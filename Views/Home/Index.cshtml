@@ -11,9 +11,9 @@
 
 <!-- Import the component -->
 <script type="module" src="https://unpkg.com/@@google/model-viewer/dist/model-viewer.min.js"></script>
-
+<script data-main="scripts/app" src="js/require.js"></script>
 <!-- Use it like any other HTML element -->
-<model-viewer id="color" camera-controls interaction-prompt="none" src="models/export.glb" ar
+<model-viewer id="color" camera-controls interaction-prompt="none" src="models/table.gltf" ar
     ar-modes="webxr scene-viewer quick-look" alt="A 3D model of an astronaut">
     <div class="controls" ,="" id="color-controls">
         <button data-color="1,0,0,1">Red</button>
@@ -21,21 +21,26 @@
         <button data-color="0,0,1,1">Blue</button>
     </div>
 </model-viewer>
+<p id="demo">teste</p>
+
 <script>
+    //import * as data from './model/example.json';
+    //    const {name} = data;
     const modelViewerColor = document.querySelector("model-viewer#color");
 
     document.querySelector('#color-controls').addEventListener('click', (event) => {
-        const colorString = event.target.dataset.color;
+       
+        // ES6/ES2015
+        // app.js
+        
+        //console.log(name); // output 'testing'
+        
 
-        if (!colorString) {
-            return;
-        }
+       var json = require('./model/table.gltf');
 
-        const color = colorString.split(',')
-            .map(numberString => parseFloat(numberString));
+       console.log(json.meshes[0].primitives[0].material);
 
-        console.log('Changing color to: ', color);
-        const [material] = modelViewerColor.model.materials;
-        material.pbrMetallicRoughness.setBaseColorFactor(color);
     });
+
+     
 </script>
