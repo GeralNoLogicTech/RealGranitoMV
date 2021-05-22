@@ -2,45 +2,219 @@
     ViewData["Title"] = "Visualizador";
 }
 
-<style>
-    #color {
-        width: 800px;
-        height: 800px;
-    }
-</style>
+<head>
+    <style>
+        #color {
+            width: 800px;
+            height: 800px;
+        }
 
-<!-- Import the component -->
-<script type="module" src="https://unpkg.com/@@google/model-viewer/dist/model-viewer.min.js"></script>
-<script data-main="scripts/app" src="js/require.js"></script>
-<!-- Use it like any other HTML element -->
-<model-viewer id="color" camera-controls interaction-prompt="none" src="models/table.gltf" ar
-    ar-modes="webxr scene-viewer quick-look" alt="A 3D model of an astronaut">
-    <div class="controls" ,="" id="color-controls">
-        <button data-color="1,0,0,1">Red</button>
-        <button data-color="0,1,0,1">Green</button>
-        <button data-color="0,0,1,1">Blue</button>
+
+        button:hover {
+            background-color: skyblue;
+        }
+
+        button[slot="hotspot-tampo"] {
+            --min-hotspot-opacity: 0.5;
+            background-color: red;
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            border: none;
+            background-color: blue;
+            box-sizing: border-box;
+        }
+
+        button[slot="hotspot-pernas"] {
+            --min-hotspot-opacity: 0.5;
+            background-color: blue;
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            border: none;
+            background-color: blue;
+            box-sizing: border-box;
+        }
+
+        #annotation {
+            background-color: #888888;
+            position: absolute;
+            transform: translate(10px, 10px);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        /* This keeps child nodes hidden while the element loads */
+        :not(:defined)>* {
+            display: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <!-- Import the component -->
+    <script type="module" src="https://unpkg.com/@@google/model-viewer/dist/model-viewer.min.js"></script>
+    <!--<script data-main="scripts/app" src="js/require.js"></script>-->
+    <!-- Use it like any other HTML element -->
+</head>
+<div id="modelo3d" class="container">
+    <div class="row">
+        <div class="col-3">
+            <!-- scrol de opcoes de objetos  -->
+        </div>
+        <div class="col-9">
+            <!-- modelo 3D -->
+            <model-viewer id="color" camera-controls interaction-prompt="none" src="models/table.gltf" ar
+                ar-modes="webxr scene-viewer quick-look" alt="A 3D model of an astronaut" >
+            
+                <!-- janela Popup -->
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn">Open Modal</button>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Tampo da Mesa</p>
+                        <button id="tampoGranito" class="tampo">Granito</button>
+                        <button id="tampoMadeira" class="tampo">Madeira</button>
+
+                        <p>Pernas da Mesa</p>
+                        <button id="pernasGranito" class="pernas">Granito</button>
+                        <button id="pernasMadeira" class="pernas">Madeira</button>
+
+                        <button id="hotspot-tampo" slot="hotspot-tampo" class="tampohotspot"
+                            data-position="-0.29168182703558376m 1.2298899049779237m 0.5308159749781514m" data-normal="0m 1m 0m">
+                            <div id="annotation">Tampo</div>
+                        </button>
+
+                        <button id="hotspot-pernas" slot="hotspot-pernas" class="pernashotspot"
+                            data-position="-0.3750164531753165m 0.41111201106937173m 1.8649118583158697m"
+                            data-normal="0.4195957639467187m 0m 0.9077110745595041m">
+                            <div id="annotation">Pernas</div>
+                        </button>
+                    </div>
+                </div>
+            </model-viewer - viewer>
+        </div>
     </div>
-</model-viewer>
+ </div>
+
+
 <p id="demo">teste</p>
-
 <script>
-    //import * as data from './model/example.json';
-    //    const {name} = data;
-    const modelViewerColor = document.querySelector("model-viewer#color");
 
-    document.querySelector('#color-controls').addEventListener('click', (event) => {
-       
-        // ES6/ES2015
-        // app.js
-        
-        //console.log(name); // output 'testing'
-        
+  //----------------------------------------------------------------------------------------------------------------------------------
+ //                                                SECCÇÃO PARA CARREGAR O MODELO 3D E MUDAR A TEXTURA
+//------------------------------------------------------------------------------------------------------------------------------------
 
-       var json = require('./model/table.gltf');
-
-       console.log(json.meshes[0].primitives[0].material);
+    $("button.tampohotspot").hide();
+    $("button.pernashotspot").hide();
+    //Mudar o tampo para granito
+    document.querySelector('#tampoGranito').addEventListener('click', (event) => { // evento disparado ao clicar no botão tampoGranito
+        $.getJSON("models/table.gltf", function (json) { //ir buscar o ficheiro gltf e coloca-lo no objeto json
+            console.log(json); //teste para imprimir o objeto na consola
+            json.meshes[0].primitives[1].material = 1; // mudar o material para granito
+            var jsoncodificado_src = "data:application/json;base64," + btoa(JSON.stringify(json)); // codificar o JSON para poder ser usado no SRC, 
+            $('#color').attr('src', jsoncodificado_src); //colocar o json com o material alterado no atributo SRC do modelviewer, permitindo atualizar em tempo real
+        });
 
     });
 
-     
+    //Mudar o tampo para madeira
+    document.querySelector('#tampoMadeira').addEventListener('click', (event) => {
+        $.getJSON("models/table.gltf", function (json) {
+            console.log(json);
+            json.meshes[0].primitives[1].material = 0;
+            var jsoncodificado_src = "data:application/json;base64," + btoa(JSON.stringify(json));
+            $('#color').attr('src', jsoncodificado_src);
+        });
+    });
+
+    //Mudar as pernas para granito
+    document.querySelector('#pernasGranito').addEventListener('click', (event) => {
+        $.getJSON("models/table.gltf", function (json) {
+            console.log(json);
+            json.meshes[0].primitives[0].material = 1;
+            var jsoncodificado_src = "data:application/json;base64," + btoa(JSON.stringify(json));
+            $('#color').attr('src', jsoncodificado_src);
+        });
+    });
+
+    //Mudar as pernas para madeira
+    document.querySelector('#pernasMadeira').addEventListener('click', (event) => {
+        $.getJSON("models/table.gltf", function (json) {
+            console.log(json);
+            json.meshes[0].primitives[0].material = 0;
+            var jsoncodificado_src = "data:application/json;base64," + btoa(JSON.stringify(json));
+            $('#color').attr('src', jsoncodificado_src);
+        });
+    });
+  //----------------------------------------------------------------------------------------------------------------------------------
+ //                      SECCÇÃO PARA MOSTRAR OS NOMES EM CIMA DOS SITIOS QUANDO SE COLOCA O RATO EM CIMA DO BOTÃO
+//------------------------------------------------------------------------------------------------------------------------------------
+
+    $("button.tampo").mouseenter(function () { //evento disparado ao passar por cima do botão
+        console.log("Passaram-me por cima do tampo");
+
+        $("button.tampohotspot").show();
+        //nar o atributo HIDDEN falso, para mostrar o hotspot ao passar o rato por cima
+    })
+
+    $("button.pernas").mouseenter(function () { //evento disparado ao passar por cima do botão
+        console.log("Passaram-me por cima do tampo");
+
+        $("button.pernashotspot").show();
+        //nar o atributo HIDDEN falso, para mostrar o hotspot ao passar o rato por cima
+    })
+
+
+    $("button.tampo").mouseleave(function () { //evento disparado ao passar por cima do botão
+        console.log("Passaram-me por cima do tampo");
+
+        $("button.tampohotspot").hide();
+        //nar o atributo HIDDEN falso, para mostrar o hotspot ao passar o rato por cima
+    })
+
+    $("button.pernas").mouseleave(function () { //evento disparado ao passar por cima do botão
+        console.log("Passaram-me por cima do tampo");
+
+        $("button.pernashotspot").hide();
+        //nar o atributo HIDDEN falso, para mostrar o hotspot ao passar o rato por cima
+    })
+
+
+//-------------------------------------------------------------------------------------------------------------------------
+//                                                   Configurando o POPUP
+//-------------------------------------------------------------------------------------------------------------------------
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 </script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
