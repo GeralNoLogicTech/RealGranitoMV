@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NoLogicTech\\Desktop\\ModelViewer\\RealGranitoMV\\RealGranitoMV.csproj",
+      "projectUniqueName": "C:\\Users\\NoLogicTech\\Documents\\GitHub\\RealGranitoMV\\RealGranitoMV.csproj",
       "projectName": "RealGranitoMV",
-      "projectPath": "C:\\Users\\NoLogicTech\\Desktop\\ModelViewer\\RealGranitoMV\\RealGranitoMV.csproj",
+      "projectPath": "C:\\Users\\NoLogicTech\\Documents\\GitHub\\RealGranitoMV\\RealGranitoMV.csproj",
       "packagesPath": "C:\\Users\\NoLogicTech\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NoLogicTech\\Desktop\\ModelViewer\\RealGranitoMV\\obj\\",
+      "outputPath": "C:\\Users\\NoLogicTech\\Documents\\GitHub\\RealGranitoMV\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
