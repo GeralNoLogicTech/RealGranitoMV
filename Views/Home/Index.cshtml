@@ -16,7 +16,6 @@
 
         button[slot="hotspot-tampo"] {
             --min-hotspot-opacity: 0.5;
-            background-color: red;
             display: block;
             width: 20px;
             height: 20px;
@@ -36,6 +35,19 @@
             border: none;
             background-color: blue;
             box-sizing: border-box;
+        }
+      /*-----------------------------------------------------------------------------------------------------------------------*/
+     /*                                                 CSS Menu                                                                       */
+    /*-----------------------------------------------------------------------------------------------------------------------*/
+
+        button[slot="hotspot-menupernas"] {
+            --min-hotspot-opacity: 0.5;
+            border: none; 
+        }
+
+        button[slot="hotspot-menutampo"] {
+            --min-hotspot-opacity: 0.5;
+            border: none;
         }
 
         #annotation {
@@ -85,7 +97,7 @@
                 <!-- The Modal -->
                 <!-- <div id="myModal" class="modal"> -->
 
-                    <!-- Modal content -->
+                    <!-- Modal content 
                     <div id="myModal" class="modal-content">
                     
                         <span class="close">&times;</span>
@@ -105,18 +117,38 @@
                             </div>
                         </div>
                     </div>
-                <!-- </div> -->
+                 </div> -->
 
                 <button id="hotspot-tampo" slot="hotspot-tampo" class="tampohotspot"
-                    data-position="-0.29168182703558376m 1.2298899049779237m 0.5308159749781514m" data-normal="0m 1m 0m">
+                    data-position="-0.29168182703558376m 1.2298899049779237m 0.5308159749781514m" data-normal="0m 1m 0m" type="button">
                     <div id="annotation">Tampo</div>
                 </button>
+                <div id="hotspot-menutampo" slot="hotspot-menutampo" class="menutampohotspot"
+                    data-position="-0.29168182703558376m 0.7898899049779237m 0.5308159749781514m" data-normal="0m 1m 0m" type="button">
+                     <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <button id="tampoGranito" type="button" class="btn btn-secondary tampo">Granito</button>
+                            <button id="tampoMadeira" type="button" class="btn btn-secondary tampo">Madeira</button>
+                        </div>
+                    </div>
+                </div>
 
                 <button id="hotspot-pernas" slot="hotspot-pernas" class="pernashotspot"
-                    data-position="-0.3750164531753165m 0.41111201106937173m 1.8649118583158697m"
-                    data-normal="0.4195957639467187m 0m 0.9077110745595041m">
+                    data-position="-0.3750164531753165m 0.57111201106937173m 1.8649118583158697m"
+                    data-normal="0.4195957639467187m 0m 0.9077110745595041m" type="button">
                     <div id="annotation">Pernas</div>
                 </button>
+                <div id="hotspot-menupernas" slot="hotspot-menupernas" class="menupernashotspot"
+                    data-position="-0.3750164531753165m 0.21111201106937173m 1.8649118583158697m"
+                    data-normal="0.4195957639467187m 0m 0.9077110745595041m" type="button">
+                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <button id="pernasGranito" type="button" class="btn btn-secondary pernas">Granito</button>
+                            <button id="pernasMadeira" type="button" class="btn btn-secondary pernas">Madeira</button>
+                        </div>
+                    </div>
+                </div>
+                
             </model-viewer - viewer>
         </div>
     </div>
@@ -130,8 +162,18 @@
  //                                                SECCÇÃO PARA CARREGAR O MODELO 3D E MUDAR A TEXTURA
 //------------------------------------------------------------------------------------------------------------------------------------
 
-    $("button.tampohotspot").hide();
-    $("button.pernashotspot").hide();
+    $("div.menutampohotspot").hide();
+    $("div.menupernashotspot").hide();
+
+    $("#hotspot-tampo").click(function(){
+        $("div.menutampohotspot").show();
+    })
+
+    $("#hotspot-pernas").click(function(){
+        $("div.menupernashotspot").show();
+    })
+    
+    //$("button.tampohotspot").click
     //Mudar o tampo para granito
     document.querySelector('#tampoGranito').addEventListener('click', (event) => { // evento disparado ao clicar no botão tampoGranito
         $.getJSON("models/table.gltf", function (json) { //ir buscar o ficheiro gltf e coloca-lo no objeto json
@@ -175,7 +217,7 @@
   //----------------------------------------------------------------------------------------------------------------------------------
  //                      SECCÇÃO PARA MOSTRAR OS NOMES EM CIMA DOS SITIOS QUANDO SE COLOCA O RATO EM CIMA DO BOTÃO
 //------------------------------------------------------------------------------------------------------------------------------------
-
+/*
     $("button.tampo").mouseenter(function () { //evento disparado ao passar por cima do botão
         console.log("Passaram-me por cima do tampo");
 
@@ -205,7 +247,7 @@
         //nar o atributo HIDDEN falso, para mostrar o hotspot ao passar o rato por cima
     })
 
-
+*/
 //-------------------------------------------------------------------------------------------------------------------------
 //                                                   Evento Para Desparar o POPUP
 //-------------------------------------------------------------------------------------------------------------------------
