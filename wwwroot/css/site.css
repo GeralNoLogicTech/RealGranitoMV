@@ -78,7 +78,7 @@ body {
 /* Principal*/
 #modelo3d
 {
-  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
+  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Janela Popup*/
@@ -87,7 +87,7 @@ body {
   display: inline-grid; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  left: 0;
+  left: 200px;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
@@ -98,11 +98,14 @@ body {
 
 /* Modal Content/Box */
 .modal-content {
+  position: fixed;
+  left: 70%;
+  top: 0px;
   background-color: #fefefe;
-  margin: 15% auto;  /*15% from the top and centered */
-  padding: 20px;
+  margin: 5% auto;  /*5% from the top */
+  padding: 10px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 25%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */

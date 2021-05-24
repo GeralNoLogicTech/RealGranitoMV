@@ -59,10 +59,21 @@
 </head>
 <div id="modelo3d" class="container">
     <div class="row">
-        <div class="col-3">
-            <!-- scrol de opcoes de objetos  -->
+        <div class="col-3" style="box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+            <div class="container">
+                <div class="row">
+                    <div class="overflow-auto">
+                            <div class="col-sm">
+                                <div id="section1">
+                                    <h1>Section 1</h1>
+                                    <p>Try to scroll this page and look at the navigation list while scrolling!</p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-9">
+        <div id = "Area3d" class="col-9">
             <!-- modelo 3D -->
             <model-viewer id="color" camera-controls interaction-prompt="none" src="models/table.gltf" ar
                 ar-modes="webxr scene-viewer quick-look" alt="A 3D model of an astronaut" >
@@ -72,31 +83,40 @@
                 <button id="myBtn">Open Modal</button>
 
                 <!-- The Modal -->
-                <div id="myModal" class="modal">
+                <!-- <div id="myModal" class="modal"> -->
 
                     <!-- Modal content -->
-                    <div class="modal-content">
+                    <div id="myModal" class="modal-content">
+                    
                         <span class="close">&times;</span>
                         <p>Tampo da Mesa</p>
-                        <button id="tampoGranito" class="tampo">Granito</button>
-                        <button id="tampoMadeira" class="tampo">Madeira</button>
+                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <button id="tampoGranito" type="button" class="btn btn-secondary tampo">Granito</button>
+                                <button id="tampoMadeira" type="button" class="btn btn-secondary tampo">Madeira</button>
+                            </div>
+                        </div>
 
                         <p>Pernas da Mesa</p>
-                        <button id="pernasGranito" class="pernas">Granito</button>
-                        <button id="pernasMadeira" class="pernas">Madeira</button>
-
-                        <button id="hotspot-tampo" slot="hotspot-tampo" class="tampohotspot"
-                            data-position="-0.29168182703558376m 1.2298899049779237m 0.5308159749781514m" data-normal="0m 1m 0m">
-                            <div id="annotation">Tampo</div>
-                        </button>
-
-                        <button id="hotspot-pernas" slot="hotspot-pernas" class="pernashotspot"
-                            data-position="-0.3750164531753165m 0.41111201106937173m 1.8649118583158697m"
-                            data-normal="0.4195957639467187m 0m 0.9077110745595041m">
-                            <div id="annotation">Pernas</div>
-                        </button>
+                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <button id="pernasGranito" type="button" class="btn btn-secondary pernas">Granito</button>
+                                <button id="pernasMadeira" type="button" class="btn btn-secondary pernas">Madeira</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <!-- </div> -->
+
+                <button id="hotspot-tampo" slot="hotspot-tampo" class="tampohotspot"
+                    data-position="-0.29168182703558376m 1.2298899049779237m 0.5308159749781514m" data-normal="0m 1m 0m">
+                    <div id="annotation">Tampo</div>
+                </button>
+
+                <button id="hotspot-pernas" slot="hotspot-pernas" class="pernashotspot"
+                    data-position="-0.3750164531753165m 0.41111201106937173m 1.8649118583158697m"
+                    data-normal="0.4195957639467187m 0m 0.9077110745595041m">
+                    <div id="annotation">Pernas</div>
+                </button>
             </model-viewer - viewer>
         </div>
     </div>
@@ -184,6 +204,12 @@
         $("button.pernashotspot").hide();
         //nar o atributo HIDDEN falso, para mostrar o hotspot ao passar o rato por cima
     })
+
+
+//-------------------------------------------------------------------------------------------------------------------------
+//                                                   Evento Para Desparar o POPUP
+//-------------------------------------------------------------------------------------------------------------------------
+   
 
 
 //-------------------------------------------------------------------------------------------------------------------------
