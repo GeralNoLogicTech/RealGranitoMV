@@ -166,11 +166,13 @@
     $("div.menupernashotspot").hide();
 
     $("#hotspot-tampo").click(function(){
+        $("div.menupernashotspot").hide();
         $("div.menutampohotspot").show();
     })
 
     $("#hotspot-pernas").click(function(){
         $("div.menupernashotspot").show();
+        $("div.menutampohotspot").hide();
     })
     
     //$("button.tampohotspot").click
