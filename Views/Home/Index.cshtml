@@ -69,6 +69,37 @@
             overflow-y: scroll;
             margin: 4px;
         }
+
+        #lazy-load-poster {
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            top: 0;
+                            bottom: 0;
+                            background-image: url("models/cilindros.jpg");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            }
+        #button-load {
+                        background-image: url("../../assets/ic_get_app_white_24dp.svg");
+                        background-repeat: no-repeat;
+                        background-size: 24px 24px;
+                        background-position: 6% 50%;
+                        background-color: #000;
+                        color: white;
+                        cursor: pointer;
+                        border-radius: 6px;
+                        display: inline-block;
+                        padding: 10px 18px 9px 40px;
+                        font-weight: 500;
+                        box-shadow: 0 0 8px rgba(0,0,0,.2), 0 0 4px rgba(0,0,0,.25);
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate3d(-50%, -50%, 0);
+                        z-index: 100;
+                    }
     </style>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <!-- Import the component -->
@@ -78,48 +109,48 @@
 </head>
 <div id="modelo3d" class="container" >
     <div class="row">
-        <div class="col-3" style="box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2);" >
+        <div class="col-3" style="box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2); margin:0px; padding:0px;" >
             <div class="container">
-                <div class="row container">
-                    <div id="navBar" class="col-sm">
-                        <div id="section1">
-                            <img src="Views/Home/cilindros.jpg">
+                <div class="row container" style="margin:0px; padding:0px;">
+                    <div id="navBar" class="col-sm" style="margin:0px; padding:0px;">
+                        <div style="margin:0px; padding:2px;">
+                            <!-- use unique asset to ensure lazy loading -->
+                            <model-viewer id="lazy-load" camera-controls reveal="interaction" src="models/table.gltf" alt="A 3D model of a damaged helmet">
+                                <div id="lazy-load-poster" slot="poster"></div>
+                                <div id="button-load" slot="poster">Load 3D Model</div>
+                            </model-viewer>
                         </div>
-                        <div id="section1">
-                            <h1>Section 1</h1>
-                            <p>Try to scroll this page and look at the navigation list while scrolling!</p>
+
+                        <div style="margin:0px; padding:2px;">
+                            <!-- use unique asset to ensure lazy loading -->
+                            <model-viewer id="lazy-load" camera-controls reveal="interaction" src="models/table.gltf" alt="A 3D model of a damaged helmet">
+                                <div id="lazy-load-poster" slot="poster" ></div>
+                                <div id="button-load" slot="poster">Load 3D Model</div>
+                            </model-viewer>
                         </div>
-                        <div id="section1">
-                            <h1>Section 1</h1>
-                            <p>Try to scroll this page and look at the navigation list while scrolling!</p>
+
+                        <div style="margin:0px; padding:2px;">
+                            <!-- use unique asset to ensure lazy loading -->
+                            <model-viewer id="lazy-load" camera-controls reveal="interaction" src="models/table.gltf" alt="A 3D model of a damaged helmet">
+                                <div id="lazy-load-poster" slot="poster"></div>
+                                <div id="button-load" slot="poster">Load 3D Model</div>
+                            </model-viewer>
                         </div>
-                        <div id="section1">
-                            <h1>Section 1</h1>
-                            <p>Try to scroll this page and look at the navigation list while scrolling!</p>
+
+                        <div style="margin:0px; padding:2px;">
+                            <!-- use unique asset to ensure lazy loading -->
+                            <model-viewer id="lazy-load" camera-controls reveal="interaction" src="models/table.gltf" alt="A 3D model of a damaged helmet">
+                                <div id="lazy-load-poster" slot="poster"></div>
+                                <div id="button-load" slot="poster">Load 3D Model</div>
+                            </model-viewer>
                         </div>
-                        <div id="section1">
-                            <h1>Section 1</h1>
-                            <p>Try to scroll this page and look at the navigation list while scrolling!</p>
-                        </div>
-                        <div id="section1">
-                            <h1>Section 1</h1>
-                            <p>Try to scroll this page and look at the navigation list while scrolling!</p>
-                        </div>
-                        <div id="section1">
-                            <h1>Section 1</h1>
-                            <p>Try to scroll this page and look at the navigation list while scrolling!</p>
-                        </div>
-                        <div id="section1">
-                            <h1>Section 1</h1>
-                            <p>Try to scroll this page and look at the navigation list while scrolling!</p>
-                        </div>
-                        <div id="section1">
-                            <h1>Section 1</h1>
-                            <p>Try to scroll this page and look at the navigation list while scrolling!</p>
-                        </div>
-                        <div id="section1">
-                            <h1>Section 1</h1>
-                            <p>Try to scroll this page and look at the navigation list while scrolling!</p>
+
+                        <div style="margin:0px; padding:2px;">
+                            <!-- use unique asset to ensure lazy loading -->
+                            <model-viewer id="lazy-load" camera-controls reveal="interaction" src="models/table.gltf" alt="A 3D model of a damaged helmet">
+                                <div id="lazy-load-poster" slot="poster"></div>
+                                <div id="button-load" slot="poster">Load 3D Model</div>
+                            </model-viewer>
                         </div>
                     </div>
                 </div>
